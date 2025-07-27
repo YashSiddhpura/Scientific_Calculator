@@ -1,0 +1,49 @@
+Step 1: Install MSYS2
+Go to the official MSYS2 download page
+Download the installer for your system (msys2-x86_64-yyyyMMdd.exe)
+Install MSYS2 at C:\msys64
+
+
+Step 2: Open MSYS2 Terminal
+Open MSYS2 MSYS from Start Menu.
+There are 3 terminals: MSYS, MinGW 32-bit, MinGW 64-bit
+We will use: MSYS2 MinGW 64-bit in next steps
+
+
+Step 3: Update MSYS2 Packages
+In MSYS2 MSYS terminal:
+pacman -Syu
+If it closes automatically after updates, open it again and run:
+pacman -Su
+
+
+Step 4: Install GTK and GCC (MinGW 64-bit)
+Now open: MSYS2 MinGW 64-bit terminal
+pacman -S mingw-w64-x86_64-toolchain mingw-w64-x86_64-gtk3
+This installs:
+gcc, g++ (C/C++ compilers)
+GTK+3
+All dependencies
+
+
+Step 5: Save Your Code
+Save your scientific_calculator.c file inside your Windows user folder.
+Example:
+C:\Users\YourName\Projects\scientific_calculator.c
+
+
+Step 6: Navigate to Code Folder in MSYS2 Terminal
+In MSYS2 MinGW 64-bit, navigate using:
+cd /c/Users/YourName/Projects
+Use /c/ instead of C:\
+
+
+Step 7: Compile Your Calculator
+Run:
+gcc `pkg-config --cflags gtk+-3.0` scientific_calculator.c -o calculator.exe `pkg-config --libs gtk+-3.0` -lm
+If successful, it will generate calculator.exe in the same folder.
+
+
+Step 8: Run the Calculator
+Still in the same terminal:
+./calculator.exe
